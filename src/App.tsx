@@ -1,24 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import ReactDOM from "react-dom/client";
+import { Route, Routes} from 'react-router-dom';
 import './App.css';
+import { ExploreBooks } from './layouts/HomePage/ExploreBooks';
+import { Footer } from './layouts/NavbarAndFooter/Footer';
+import { CustomNavbar } from './layouts/NavbarAndFooter/CustomNavbar';
+import { Signup } from './layouts/Auth/Signup';
+import { Login } from './layouts/Auth/Login';
+import { ForgotPassword } from './layouts/Auth/ForgotPassword';
+import { Container } from 'react-bootstrap';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="" >
+      <CustomNavbar />
+      <Container
+        className="d-flex align-items-center justify-content-center"
+        style={{ minHeight: "80vh" }}
+      >
+        <div className="w-100" style={{ maxWidth: "400px" }}>
+          <Routes>
+            <Route path='signup' element={<Signup />} />
+            <Route path='login' element={<Login />} />
+            <Route path="/" element={<ExploreBooks />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+          </Routes>
+        </div>
+      </Container>
+      <Footer />
     </div>
   );
 }
