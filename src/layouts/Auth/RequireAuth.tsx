@@ -11,7 +11,7 @@ export const RequireAuth = ({ children }: Props) => {
     const location = useLocation();
         
     return( <>{
-        checkingStatus? <Spinner /> : 
+        checkingStatus? <div className="d-flex justify-content-center row aligne-items-center"> <Spinner/></div> : 
             isAuthenticated ? children : <Navigate to="/login" replace state={{ path: location.pathname }}/>
     }</>
   );

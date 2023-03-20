@@ -1,5 +1,5 @@
 import Badge from "@mui/material/Badge";
-import { AccountSidebar } from "../layouts/Account/AccountSidebar";
+import { AccountSidebar } from "../Account/AccountSidebar";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
@@ -8,14 +8,14 @@ import IconButton from "@mui/material/IconButton";
 import { PhotoCamera } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import InputAdornment from "@mui/material/InputAdornment";
-import ICategoryData from "../types/Category";
-import CatgeoryService from "../services/CategoryService";
-import IBookData from "../types/Book";
-import BookService from "../services/BookService";
+import ICategoryData from "../../types/Category";
+import CatgeoryService from "../../services/CategoryService";
+import IBookData from "../../types/Book";
+import BookService from "../../services/BookService";
 import Chip from "@mui/material/Chip";
 import Grid from "@mui/material/Grid";
 import { AxiosRequestConfig } from "axios";
-import { useAuth } from "../provider/AuthProvider";
+import { useAuth } from "../../provider/AuthProvider";
 import Form from "react-bootstrap/esm/Form";
 
 
@@ -143,12 +143,15 @@ export const AddBook = () => {
 
                     <div className="d-flex justify-content-between aligne-items-center row ms-auto">
                         <TextField name="name" id="outlined-basic" defaultValue={bookRequest.name}
+                        label="Title" variant="outlined"
                              onChange={handleOnChange}  required/>
 
                         <TextField name="author" id="outlined-basic" defaultValue={bookRequest.author}
+                        label="Author" variant="outlined"
                              onChange={handleOnChange} required />
 
                         <TextField name="price" type='number'  id="outlined-basic" value={bookRequest.price}
+                        label="Price" variant="outlined"
                              onChange={handleOnChange} required
                             inputProps={{
                                 inputMode: 'numeric', 
@@ -160,6 +163,7 @@ export const AddBook = () => {
                                 endAdornment: <InputAdornment position="start"  >Lei</InputAdornment>}} />
 
                         <TextField name="quantity" type='number' id="outlined-basic" defaultValue={bookRequest.quantity}
+                        label="Quantity" variant="outlined"
                             onChange={handleOnChange} 
                         inputProps={{
                                 inputMode: 'numeric',

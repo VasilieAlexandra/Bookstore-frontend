@@ -7,7 +7,7 @@ import OrdersIcon from '@mui/icons-material/LocalMall';
 import { UserAccount } from "./UserAccount";
 import { Link, Route, Routes } from "react-router-dom";
 import { ExploreBooks } from "../HomePage/ExploreBooks";
-import { ManageBooks } from "../../ManageBooks/ManageBooks";
+import { ManageBooks } from "../ManageBooks/ManageBooks";
 import { Orders } from "./Orders";
 
 interface Props {

@@ -8,8 +8,8 @@ import { AxiosRequestConfig } from "axios";
 
 //const token = auth.currentUser?.getIdTokenResult(true);
 
-const getAll = () => {
-  return http.get<Array<IBookData>>("/books");
+const getAll = (options: AxiosRequestConfig) => {
+  return http.get<Array<IBookData>>("/books",options);
 };
 
 const get = (id: any) => {

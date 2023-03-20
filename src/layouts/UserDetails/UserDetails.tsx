@@ -13,20 +13,25 @@ import Divider from "@mui/material/Divider";
 
 interface UserData {
   displayName?: string | null,
-  photoUrl?: string | null
+  photoUrl?: string
 }
 
 export const UserDetails = () => {
 
   const { user, updateUser } = useAuth();
-  const [userData, setUserData] = useState<UserData>({ displayName: user?.displayName, photoUrl: user?.photoURL });
+  const {photoUrl} = useAuth();
+  const [userData, setUserData] = useState<UserData>({ displayName: user?.displayName, photoUrl:  user?.photoURL! });
+  const [photo, setPhoto] = useState<File>("" as unknown as File);
+
   
   useEffect(() => {
     async function getData() {
-        console.log( user?.photoURL);
+      if (user?.photoURL) {
+        setUserData({...userData,photoUrl: user.photoURL});
+      }
     }
     getData();
-}, []);
+}, [user]);
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +41,7 @@ export const UserDetails = () => {
       setUserData({
         photoUrl: URL.createObjectURL(e.currentTarget.files![0]),
       });
-console.log(e.currentTarget.value);
+      setPhoto(e.target.files![0])
     }
 
   };
@@ -46,25 +51,18 @@ console.log(e.currentTarget.value);
       ...userData,
       [e.currentTarget.name]: e.currentTarget.value
     });
-    console.log(e.currentTarget);
   };
 
-  //   const handleUpload = async e => {
-  //     e.preventDefault();
-  //     const formData = new FormData();
-  //     formData.append("image", image.raw);
+    const handleUpload = async (e:React.MouseEvent<HTMLElement>) => {
+     
+      await updateUser(user!,{displayName:userData.displayName, file: photo});
 
-  //     await fetch("YOUR_URL", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "multipart/form-data"
-  //       },
-  //       body: formData
-  //     });
-  //   };
+    };
 
   return (
+    
     <div className="d-flex row justify-content-between mt-5">
+      {photoUrl &&
       <label htmlFor="upload-button">
         <Badge
           overlap="circular"
@@ -73,12 +71,12 @@ console.log(e.currentTarget.value);
             <AddCircleIcon />
           }
         >
-          <Avatar
-            src={userData.photoUrl!}
+           <Avatar
+            src={userData.photoUrl}
             sx={{ width: 100, height: 100 }} />
         </Badge>
-
-      </label>
+      </label> 
+        }
       <input
         type="file"
         name="photoUrl"
@@ -92,7 +90,7 @@ console.log(e.currentTarget.value);
       <TextField name="email" id="outlined-basic" defaultValue={user?.email}
         label="email" variant="standard" disabled />
       <div className="d-flex justify-content-end">
-        <Button className="" size="small" onClick={() => { updateUser(user!, userData) }}>Save</Button>
+        <Button className="" size="small" onClick={handleUpload}>Save</Button>
       </div>
       <Divider />
     </div>

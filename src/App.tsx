@@ -14,11 +14,11 @@ import { UserAccount } from './layouts/Account/UserAccount';
 import { Cart } from './layouts/ShoppingCart/Cart';
 import { ProSidebarProvider } from "react-pro-sidebar";
 import { AccountSidebar } from './layouts/Account/AccountSidebar';
-import { ManageBooks } from './ManageBooks/ManageBooks';
+import { ManageBooks } from './layouts/ManageBooks/ManageBooks';
 import { Orders } from './layouts/Account/Orders';
 import { RequireAuth } from './layouts/Auth/RequireAuth';
 import { AddAddress } from './layouts/Address/AddAddress';
-import { AddBook } from './ManageBooks/AddBook';
+import { AddBook } from './layouts/ManageBooks/AddBook';
 
 
 const App = () => {

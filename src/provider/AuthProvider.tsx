@@ -19,18 +19,21 @@ import React, {
     updateProfile,
   } from 'firebase/auth'
   
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+  
   
   export interface AuthContextModel {
     auth: Auth
     user: User | null
     token: String | null
     isAuthenticated: Boolean
-    checkingStatus: Boolean
+    checkingStatus: Boolean,
+    photoUrl: string| null,
     logIn: (email: string, password: string) => Promise<UserCredential>
     signUp: (email: string, password: string) => Promise<UserCredential>
     sendPasswordResetEmail?: (email: string) => Promise<void>
     logOut:() => Promise<void>
-    updateUser:(user: User,{displayName, photoUrl}: {displayName?: string|null, photoUrl?: string|null}) => Promise<void>
+    updateUser:(user: User,{displayName, file}: {displayName?: string|null, file: File}) => Promise<void>
   }
   
   export const AuthContext = React.createContext<AuthContextModel>(
@@ -58,6 +61,10 @@ import React, {
     const [user, setUser] = useState<User | null>(null);
     const [isAuthenticated, setAuthenticated] = useState<Boolean>(false);
     const [token, setToken] = useState<String| null>("");
+    const [photoUrl, setPhotoUrl] = useState<string| null>("");
+    
+const storage = getStorage();
+
     const [checkingStatus, setCheckingStatus] = useState(true);
   
     function signUp(email: string, password: string): Promise<UserCredential> {
@@ -74,9 +81,15 @@ import React, {
     function logOut(): Promise<void> {
     return signOut(auth);
     }
-    function updateUser(user: User, {displayName, photoUrl}: {displayName?: string|null, photoUrl?: string|null}): Promise<void> {
-      return updateProfile(user,{displayName:displayName, photoURL:photoUrl});
-  }
+    async function updateUser(user: User, {displayName, file}: {displayName?: string|null,file:File}): Promise<void> {
+      const fileRef = ref(storage, user.uid + '.png');
+ 
+        const snapshot = await uploadBytes(fileRef, file);
+        const photoURL = await getDownloadURL(fileRef);
+      
+      return updateProfile(user,{displayName:displayName, photoURL:photoURL});
+      }
+  
 
     useEffect(() => {
       //function that firebase notifies you if a user is set
@@ -86,7 +99,8 @@ import React, {
           const t = await user.getIdToken(true);
           setToken(t);
           setAuthenticated(true);
-          
+          setPhotoUrl(user?.photoURL!);
+       
         }
         setCheckingStatus(false);
       })
@@ -99,6 +113,7 @@ import React, {
       token,
       isAuthenticated,
       checkingStatus,
+      photoUrl,
       logIn,
       signUp,
       resetPassword,
