@@ -17,18 +17,26 @@ import Grid from "@mui/material/Grid";
 import { AxiosRequestConfig } from "axios";
 import { useAuth } from "../../provider/AuthProvider";
 import Form from "react-bootstrap/esm/Form";
+import { useParams } from "react-router-dom";
+import Spinner from "react-bootstrap/esm/Spinner";
+
+interface Props{
+    book: IBookData,
+    increment: () => void
+
+}
 
 
+export const EditBook = () => {
 
-export const AddBook = () => {
     const [image, setImage] = useState({ preview: "", raw: '' as unknown as File });
     const [categoryList, setCategoryList] = useState<Array<ICategoryData>>([]);
-    const [bookCategory, setBookCategory] = useState<Array<ICategoryData>>([]);
     const [bookRequest, setBookRequest] = useState<IBookData>({name: '',author: '', price: 0, quantity: 0, categories: []});
     const { token } = useAuth();
     const { user } = useAuth();
-    const { getAll } = CatgeoryService;
-    const { create } = BookService;
+    const { getAllExclude } = CatgeoryService;
+    const { get, update } = BookService;
+    let { id } = useParams();
 
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,12 +59,39 @@ export const AddBook = () => {
     };
 
     useEffect(() => {
-        async function getCategories() {
-            const response = await getAll();
+
+        async function getCategories(book: IBookData) {
+            const bookCategories: Array<ICategoryData> = book.categories;
+            const ids: Array<number> = bookCategories.map(c => c.id);
+            console.log(ids);
+
+            const options: AxiosRequestConfig = {
+                headers: {
+                    'Content-Type': 'application/json',
+                },                
+                  params: {"exclude": ids},
+                  paramsSerializer: {
+                    indexes: null // by default: false
+                  }
+            };
+            const response = await getAllExclude(book.id,options);
             setCategoryList(response.data);
- 
+            
+            
+            
         }
-        getCategories();
+
+        function getBook() {
+            get(id).then((response) =>{
+                setBookRequest(response.data);
+                getCategories(response.data);
+                setImage({...image,preview: `data:image/jpeg;base64,${response.data.image}`})
+            }
+            );
+            
+        }
+        getBook();
+        
     }, []);
 
 
@@ -75,12 +110,11 @@ export const AddBook = () => {
         };
 
         try{
-            const response = await create(user!.uid, formData, options);
+            const response = await update(user!.uid, bookRequest.id!, formData, options);
             console.log(response); 
-            setBookRequest({name: '',author: '', price: 0, quantity: 0, categories: []});
 
         }catch{
-            console.log("Failed to add book");
+            console.log("Failed to update book");
         }
         
     };
@@ -99,7 +133,7 @@ export const AddBook = () => {
     return (
         <>
             <AccountSidebar>
-            
+            {categoryList.length === 0 ? <Spinner className="mt-auto"/> :
                 <div className="d-flex justify-content-between aligne-item-center col m-5" >
                 <form className="d-flex justify-content-between aligne-item-center col me-auto" id="uploadForm" encType="multipart/form-data" onSubmit={handleUpload}>
                     <div className="d-flex justify-content-between aligne-item-center row me-auto"  style={{maxWidth:'500px', minWidth:'500px'}}>
@@ -183,7 +217,7 @@ export const AddBook = () => {
                                 ))}
                         </Grid>
                         <div className="mt-4">
-                            <Button variant="contained" size="small" type="submit" >Upload</Button>
+                            <Button variant="contained" size="small" type="submit" >Save</Button>
                         </div>
                         {/* {error && <Alert className="m-10" variant="danger">{error}</Alert>} */}
                     </div>
@@ -191,7 +225,7 @@ export const AddBook = () => {
 
                 </div>
                 
-
+                                }
             </AccountSidebar>
         </>
     );

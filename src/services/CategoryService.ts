@@ -2,18 +2,11 @@ import http from "../http-common";
 import ICategoryData from "../types/Category";
 import { AxiosRequestConfig } from "axios";
 
-const options: AxiosRequestConfig = {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': '*',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE',
-      // 'Auth-Token': this.config.access_token,
-    },
-  };
-
 const getAll = () => {
     return http.get<Array<ICategoryData>>("/categories");
+}
+const getAllExclude = (id: number, options: AxiosRequestConfig) => {
+  return http.get<Array<ICategoryData>>(`/categories/${id}/exclude`,options);
 }
 
 const get = (id: number) => {
@@ -23,6 +16,7 @@ const get = (id: number) => {
 const CatgeoryService = {
     getAll,
     get,
+    getAllExclude,
 };
 
 export default CatgeoryService;

@@ -63,7 +63,7 @@ export const UserDetails = () => {
     
     <div className="d-flex row justify-content-between mt-5">
       {photoUrl &&
-      <label htmlFor="upload-button">
+      <label className="p-3" htmlFor="upload-button">
         <Badge
           overlap="circular"
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -85,9 +85,9 @@ export const UserDetails = () => {
         onChange={handleChange}
         //defaultValue={userData.photoUrl!}
       />
-      <TextField name="displayName" id="outlined-basic" defaultValue={userData.displayName}
+      <TextField className="p-3 m-auto" name="displayName" id="outlined-basic" defaultValue={userData.displayName}
         label="username" variant="outlined" onChange={handleTextChange} />
-      <TextField name="email" id="outlined-basic" defaultValue={user?.email}
+      <TextField className="p-3"name="email" id="outlined-basic" defaultValue={user?.email}
         label="email" variant="standard" disabled />
       <div className="d-flex justify-content-end">
         <Button className="" size="small" onClick={handleUpload}>Save</Button>

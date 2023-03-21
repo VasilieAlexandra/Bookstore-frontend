@@ -3,11 +3,6 @@ import IBookData from "../types/Book";
 import auth from "../firebaseSetup";
 import { AxiosRequestConfig } from "axios";
 
-// var token = await FirebaseAuth.instance.currentUser().getIdToken();
-// var response = await httpClient.get(url,headers: {'Authorization':"Bearer $token"});
-
-//const token = auth.currentUser?.getIdTokenResult(true);
-
 const getAll = (options: AxiosRequestConfig) => {
   return http.get<Array<IBookData>>("/books",options);
 };
@@ -16,16 +11,16 @@ const get = (id: any) => {
   return http.get<IBookData>(`/books/${id}`);
 };
 
-const create = (userId:String, data: IBookData, image: FormData,options: AxiosRequestConfig) => {
+const create = (userId:String, image: FormData,options: AxiosRequestConfig) => {
   return http.post<IBookData>(`/users/${userId}/books`,image,options);
 };
 
-const update = (userId:String, bookId: any, data: IBookData) => {
-  return http.put<any>(`/users/${userId}/books/${bookId}`, data);
+const update = (userId:String, bookId: number, image: FormData,options: AxiosRequestConfig) => {
+  return http.put<IBookData>(`/users/${userId}/books/${bookId}`, image,options);
 };
 
-const remove = (userId: String, bookId: any) => {
-  return http.delete<any>(`/books/${bookId}`);
+const remove = (userId: String, bookId: number,options: AxiosRequestConfig) => {
+  return http.delete<boolean>(`/users/${userId}/books/${bookId}`,options);
 };
 
 // const removeAll = () => {

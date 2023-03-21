@@ -19,6 +19,7 @@ import { Orders } from './layouts/Account/Orders';
 import { RequireAuth } from './layouts/Auth/RequireAuth';
 import { AddAddress } from './layouts/Address/AddAddress';
 import { AddBook } from './layouts/ManageBooks/AddBook';
+import { EditBook } from './layouts/ManageBooks/EditBook';
 
 
 const App = () => {
@@ -49,8 +50,16 @@ const App = () => {
               <RequireAuth>
               <AddBook />
               </RequireAuth>
+
             )} />
+              <Route path="/account/manageBooks/edit/:id" element={(
+                <RequireAuth>
+                <EditBook />
+                </RequireAuth>
+              )} />
+            
               <Route path="/cart" element={<Cart />} /> 
+
 
               <Route path='/signup' element={<Signup />} />
               <Route path='/login' element={<Login />} />

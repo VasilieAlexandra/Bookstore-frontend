@@ -21,6 +21,7 @@ export const ManageBooks = () => {
     const { user } = useAuth();
     const [books, setBooks] = useState<Array<IBookData>>([]);
     const { getAll } = BookService
+    const history = useNavigate();
     
     const [count, setCount] = useState(0);
     const increment = () => {
@@ -42,9 +43,6 @@ export const ManageBooks = () => {
         }
         getCategories();
     }, [count]);
-
-
-    const history = useNavigate();
 
     return (
         <>

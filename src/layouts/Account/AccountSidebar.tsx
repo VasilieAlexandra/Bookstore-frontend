@@ -17,7 +17,7 @@ export const AccountSidebar = ({ children }: Props) => {
 
     const { collapseSidebar } = useProSidebar();
     return( 
-        <div id="sidebar" className="d-flex w-100 h-100 " >
+        <div id="sidebar" className="d-flex me-auto ms-auto" >
             <Sidebar style={{ display: "flex",height: "91vh"}}>
                 
         <Menu>
@@ -35,7 +35,7 @@ export const AccountSidebar = ({ children }: Props) => {
         </Menu>
  
       </Sidebar> 
-      <main className="d-flex me-auto ms-auto justify-content-center aligne-items-center flex-grow-1 row">{children}</main>
+      <main className="d-flex me-auto ms-auto mb-auto justify-content-center aligne-items-center flex-grow-1 row">{children}</main>
         </div>
 
     );
