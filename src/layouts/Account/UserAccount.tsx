@@ -15,12 +15,12 @@ import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
 
 export const UserAccount = () => {
-    const { user, updateUser } = useAuth();
+    const { user } = useAuth();
     const [addresses, setAddresses] = useState<Array<IAddressData>>([]);
     const { token } = useAuth();
     const { getAll } = AddressService;
     const [count, setCount] = useState(0);
-   
+
     const increment = () => {
         setCount(count + 1)
     }
@@ -47,6 +47,9 @@ export const UserAccount = () => {
             <AccountSidebar>
                 <div className="d-flex justify-content-center aligne-item-center row">
                     <UserDetails />
+                    <div className="w-100 text-center mt-3">
+                        <Link to="/forgot-password">Change Password</Link>
+                    </div>
                     <AddressTable addresses={addresses} increment={increment} />
                 </div>
 

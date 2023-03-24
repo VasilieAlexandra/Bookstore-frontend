@@ -11,6 +11,8 @@ import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
 import BookService from "../../services/BookService";
 import Spinner from "react-bootstrap/esm/Spinner";
+
+import InfoIcon from '@mui/icons-material/Info';
 interface Props {
     id: number
 }
@@ -29,25 +31,26 @@ export const BookInfo = ({ id }: Props) => {
             setBook(response.data)
         }
         getBook();
-        //console.log(book);
-        //get(id).then((response)=>{setBook(response.data)})
 
     }, []);
     return (
-        <>
-            <IconButton aria-label="delete" onClick={handleOpen} size="small"><MoreHorizIcon />More</IconButton>
+        <div className="d-flex justify-content-center aligne-items-center row">
+            <IconButton aria-label="delete" onClick={handleOpen} size="small"><InfoIcon /></IconButton>
             <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
-                className="d-flex justify-content-between aligne-item-center row"
+                className="d-flex justify-content-center aligne-items-center row m-auto"
+                sx={{ minWidth: "200px", maxWidth: "300px" }}
+
             >
-                
-                        <Container className="model-style d-flex justify-content-between aligne-item-center col w-auto h-auto m-auto">
-                        
-                    {book === null ? <Spinner className="m-auto" /> : 
-                    <div className="d-flex"><img
+
+                <Container className="model-style justify-content-center aligne-item-center col h-auto w-auto m-auto">
+
+                    {book === null ? <Spinner className="m-auto" /> :
+                        <div className="d-flex w-auto col">
+                            <img
                                 src={`data:image/jpeg;base64,${book!.image}`}
                                 srcSet={`data:image/jpeg;base64,${book!.image}`}
                                 alt={book!.name}
@@ -81,19 +84,18 @@ export const BookInfo = ({ id }: Props) => {
                                             <Grid item xs="auto" key={category.id}>
                                                 <Chip label={category.name} variant="outlined" color='warning' />
                                             </Grid>
-                                            //    <li className="ms-auto p-2" key={category.id}> ></li>
                                         ))}
                                 </Grid>
-                                </div>
-                                </div>
-}
-                        </Container>
-                    
-                    
+                            </div>
+                        </div>
+                    }
+                </Container>
+
+
             </Modal>
 
 
 
-        </>
+        </div>
     );
 }

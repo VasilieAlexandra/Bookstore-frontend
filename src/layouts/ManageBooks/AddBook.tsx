@@ -23,13 +23,22 @@ import Form from "react-bootstrap/esm/Form";
 export const AddBook = () => {
     const [image, setImage] = useState({ preview: "", raw: '' as unknown as File });
     const [categoryList, setCategoryList] = useState<Array<ICategoryData>>([]);
-    const [bookCategory, setBookCategory] = useState<Array<ICategoryData>>([]);
     const [bookRequest, setBookRequest] = useState<IBookData>({name: '',author: '', price: 0, quantity: 0, categories: []});
     const { token } = useAuth();
     const { user } = useAuth();
     const { getAll } = CatgeoryService;
     const { create } = BookService;
+    const [count, setCount] = useState(0);
+   
+    const increment = () => {
+        setCount(count + 1)
+    }
 
+    const isDisabled = () => {
+        if (bookRequest.categories.length===0 || image.preview==='')
+            return true;
+        return false;
+    }
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files!.length) {
@@ -57,27 +66,29 @@ export const AddBook = () => {
  
         }
         getCategories();
-    }, []);
+        setBookRequest({...bookRequest, categories:[]})
+    }, [count]);
 
 
     const handleUpload = async (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("image", image.raw);
-
+        const res = await image.raw.arrayBuffer();
+        console.log(res);
 
         const options: AxiosRequestConfig = {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
             
-              params: {"book": JSON.stringify(bookRequest)}
+           params: {"book": JSON.stringify(bookRequest),"image": JSON.stringify(image.raw)}
         };
 
         try{
             const response = await create(user!.uid, formData, options);
-            console.log(response); 
-            setBookRequest({name: '',author: '', price: 0, quantity: 0, categories: []});
+            console.log(response.data); 
+            increment();
 
         }catch{
             console.log("Failed to add book");
@@ -109,7 +120,7 @@ export const AddBook = () => {
                             anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                             badgeContent={
                                 <IconButton color="primary" aria-label="upload picture" component="label">
-                                    <input  hidden type="file" onChange={handleChange}/>
+                                    <input name="image" id="image" hidden type="file"  onChange={handleChange} required/>
                                     <PhotoCamera />
                                 </IconButton>
                             }
@@ -120,8 +131,7 @@ export const AddBook = () => {
                                 src={image.preview}
                                 alt="Please upload image"
                                 loading="lazy"
-                                width="400px" height="450px"
-
+                                width="400px" height="450px"  
                             />
                             }
                         </Badge>
@@ -155,9 +165,8 @@ export const AddBook = () => {
                              onChange={handleOnChange} required
                             inputProps={{
                                 inputMode: 'numeric', 
-                                pattern: "[0-9]+([\.,][0-9]+)?", 
-                                step:'0.01',
-                                min: 1,
+                                step:'1',
+                                min: "1",
                              }} 
                             InputProps={{
                                 endAdornment: <InputAdornment position="start"  >Lei</InputAdornment>}} />
@@ -167,7 +176,7 @@ export const AddBook = () => {
                             onChange={handleOnChange} 
                         inputProps={{
                                 inputMode: 'numeric',
-                                min: 1,
+                                min: "1",
                                 step:'1',
                              }} 
                         />
@@ -183,7 +192,7 @@ export const AddBook = () => {
                                 ))}
                         </Grid>
                         <div className="mt-4">
-                            <Button variant="contained" size="small" type="submit" >Upload</Button>
+                            <Button variant="contained" size="small" type="submit" disabled={isDisabled()}>Upload</Button>
                         </div>
                         {/* {error && <Alert className="m-10" variant="danger">{error}</Alert>} */}
                     </div>

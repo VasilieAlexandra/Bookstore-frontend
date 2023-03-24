@@ -20,7 +20,7 @@ export const ManageBooks = () => {
     const { token } = useAuth();
     const { user } = useAuth();
     const [books, setBooks] = useState<Array<IBookData>>([]);
-    const { getAll } = BookService
+    const { getAllForUser } = BookService
     const history = useNavigate();
     
     const [count, setCount] = useState(0);
@@ -30,15 +30,14 @@ export const ManageBooks = () => {
     const options: AxiosRequestConfig = {
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         },
-
-        params: { "seller": user?.uid }
     };
 
     useEffect(() => {
 
         async function getCategories() {
-            const response = await getAll(options);
+            const response = await getAllForUser(user!.uid, options);
             setBooks(response.data);
         }
         getCategories();

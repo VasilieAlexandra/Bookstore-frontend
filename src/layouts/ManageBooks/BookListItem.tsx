@@ -55,29 +55,12 @@ export const BookListItem = ({ book, increment }: Props) => {
         selectedBookIdRef.current = null
     };
 
-    // const onNavigate = () => {
-    //    // try catch and checks
-    //    if (selectedUserIdRef.current) {
-    //      navigate(`/edit-users/${selectedUserIdRef.current}`)
-    //    }
-    // }
-
     const handleDelete = async (bookId: number) => {
         // try catch and checks
         if (selectedBookIdRef.current === bookId) {
             await remove(user!.uid, bookId, options);
             handleClose();
             increment();
-        }
-    }
-
-    const handleGetInfo = async (bookId: number) => {
-        // try catch and checks
-        if (selectedBookIdRef.current === bookId) {
-
-            //  await remove(user!.uid, bookId, options);
-            //  handleClose();
-            //  increment();
         }
     }
     const handleEdit = async (bookId: number) => {
@@ -139,7 +122,7 @@ export const BookListItem = ({ book, increment }: Props) => {
                                 Delete
                             </MenuItem>
                             <Divider sx={{ my: 0.5 }} />
-                            <MenuItem value={book.id} onClick={() => handleGetInfo(book.id)} >
+                            <MenuItem value={book.id} >
                             <BookInfo id={selectedBookIdRef.current!}/>
                             </MenuItem>
 

@@ -12,6 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { blueGrey } from '@mui/material/colors';
+import { useCart } from "../../provider/CartProvider";
 
 
 
@@ -22,17 +23,8 @@ export const CustomNavbar = () => {
     const history = useNavigate();
     const [categoryList, setCategoryList] = useState<Array<ICategoryData>>([]);
     const { getAll } = CatgeoryService
+    const { numBooks } =  useCart();
 
-    // const getCategories = () => {
-    //     CatgeoryService.getAll()
-    //         .then((response: any) => {
-    //             setCategoryList(response.data);
-    //             console.log(response.data);
-    //         })
-    //         .catch((e: Error) => {
-    //             console.log(e);
-    //         });
-    // };
     useEffect(()=>{
         async function getCategories(){
             const response = await getAll();
@@ -55,57 +47,27 @@ export const CustomNavbar = () => {
     return (
         <Navbar className='navbar navbar-dark navbar-expand-lg main-color py-2 d-flex'>
             <Nav className='container-fluid'>
-                <img src={myLogo} width={50} height={50} />
-                <div className='navbar-brand logo' >Book</div>
+                <NavLink to="/" className='navbar-brand ms-3 logo'>Bookshop</NavLink>
 
                 <ul className='navbar-nav '>
-                    <li className='nav-item'>
-                        <NavLink to="/" className={({ isActive }) =>
-                            isActive ? 'nav-link' : 'nav-link'
-                        }>Home</NavLink>
-                    </li>
                     <div className="dropdown">
-                        <a className="btn btn-secondary dropdown-toggle nav-link bg-transparent" href="#" role="button" data-bs-toggle="dropdown"
+                        <a className="btn btn-secondary dropdown-toggle nav-link bg-transparent" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                             Categories
                         </a>
                         <ul className="dropdown-menu">
                             {categoryList &&
                                 categoryList.map(category => (
-                                    <li key={category.id}><a className="dropdown-item" href="#">{category.name}</a></li>
+                                    <li key={category.id}><a className="dropdown-item" href={`/books/category/${category.id}`}>{category.name}</a></li>
                                 ))}
                         </ul>
                     </div>
-                    {/* <div className="dropdown">
-                        <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                            Dropdown form
-                        </button>
-                        <form className="dropdown-menu p-4">
-                            <div className="mb-3">
-                                <label className="form-label">Email address</label>
-                                <input type="email" className="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" />
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">Password</label>
-                                <input type="password" className="form-control" id="exampleDropdownFormPassword2" placeholder="Password" />
-                            </div>
-                            <div className="mb-3">
-                                <div className="form-check">
-                                    <input type="checkbox" className="form-check-input" id="dropdownCheck2" />
-                                    <label className="form-check-label">
-                                        Remember me
-                                    </label>
-                                </div>
-                            </div>
-                            <button type="submit" className="btn btn-primary">Sign in</button>
-                        </form>
-                    </div> */}
                 </ul>
                 <SearchBar />
                 <ul className='navbar-nav ms-auto'>
                     <li>
                         <Link type='button' className='btn' to='/cart'>
-                            <Badge badgeContent={0} color="primary" showZero >
+                            <Badge badgeContent={numBooks} color="primary" showZero >
                                 <ShoppingCartIcon sx={{ color: blueGrey[50] }} fontSize="large" />
                             </Badge>
 

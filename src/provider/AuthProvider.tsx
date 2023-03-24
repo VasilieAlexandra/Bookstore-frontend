@@ -13,7 +13,7 @@ import React, {
     User,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    sendPasswordResetEmail,
+    updatePassword,
     signOut,
     updateCurrentUser,
     updateProfile,
@@ -31,22 +31,13 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
     photoUrl: string| null,
     logIn: (email: string, password: string) => Promise<UserCredential>
     signUp: (email: string, password: string) => Promise<UserCredential>
-    sendPasswordResetEmail?: (email: string) => Promise<void>
+    updateUserPassword: (newPass: string) => Promise<void>
     logOut:() => Promise<void>
     updateUser:(user: User,{displayName, file}: {displayName?: string|null, file: File}) => Promise<void>
   }
   
   export const AuthContext = React.createContext<AuthContextModel>(
     {} as AuthContextModel,
-  )
-
-  export interface UserContextState {
-    isAuthenticated: boolean
-    id?: string
-  }
-  
-  export const UserContext = createContext<UserContextState>(
-    {isAuthenticated: auth.currentUser!== null, id: auth.currentUser?.uid} as UserContextState,
   )
   
   export function useAuth(): AuthContextModel {
@@ -63,7 +54,7 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
     const [token, setToken] = useState<String| null>("");
     const [photoUrl, setPhotoUrl] = useState<string| null>("");
     
-const storage = getStorage();
+    const storage = getStorage();
 
     const [checkingStatus, setCheckingStatus] = useState(true);
   
@@ -75,8 +66,8 @@ const storage = getStorage();
       return signInWithEmailAndPassword(auth, email, password)
       
     }
-    function resetPassword(email: string): Promise<void> {
-      return sendPasswordResetEmail(auth, email)
+    function updateUserPassword(newPass: string): Promise<void> {
+      return updatePassword(user!, newPass);
     }
     function logOut(): Promise<void> {
     return signOut(auth);
@@ -93,11 +84,10 @@ const storage = getStorage();
 
     useEffect(() => {
       //function that firebase notifies you if a user is set
-      const unsubsrcibe = auth.onAuthStateChanged(async (user) => {
+      const unsubsrcibe = auth.onAuthStateChanged((user) => {
         setUser(user)
         if (user) {
-          const t = await user.getIdToken(true);
-          setToken(t);
+          user.getIdToken(true).then(t=>setToken(t));
           setAuthenticated(true);
           setPhotoUrl(user?.photoURL!);
        
@@ -116,7 +106,7 @@ const storage = getStorage();
       photoUrl,
       logIn,
       signUp,
-      resetPassword,
+      updateUserPassword,
       logOut,
       updateUser,
     }

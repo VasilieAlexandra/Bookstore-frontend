@@ -62,7 +62,6 @@ export const UserDetails = () => {
   return (
     
     <div className="d-flex row justify-content-between mt-5">
-      {photoUrl &&
       <label className="p-3" htmlFor="upload-button">
         <Badge
           overlap="circular"
@@ -76,14 +75,14 @@ export const UserDetails = () => {
             sx={{ width: 100, height: 100 }} />
         </Badge>
       </label> 
-        }
+
       <input
         type="file"
         name="photoUrl"
         id="upload-button"
         style={{ display: "none" }}
         onChange={handleChange}
-        //defaultValue={userData.photoUrl!}
+        
       />
       <TextField className="p-3 m-auto" name="displayName" id="outlined-basic" defaultValue={userData.displayName}
         label="username" variant="outlined" onChange={handleTextChange} />

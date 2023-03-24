@@ -42,15 +42,12 @@ export const Login = () => {
                 </Form.Group>
                 <Form.Group id="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" ref={passwordRef} placeholder='Email' />
+                  <Form.Control type="password" ref={passwordRef} placeholder='Password' />
                 </Form.Group>
                 <Button className="button-style" type="submit">
                   Log in
                 </Button>
               </Form>
-              <div className="w-100 text-center mt-3">
-                <Link to="/forgot-password">Forgot Password?</Link>
-              </div>
             </Card.Body>
           </Card>
           <div className="w-100 text-center mt-2">

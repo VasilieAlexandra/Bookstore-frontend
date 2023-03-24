@@ -3,32 +3,36 @@ import IBookData from "../types/Book";
 import auth from "../firebaseSetup";
 import { AxiosRequestConfig } from "axios";
 
-const getAll = (options: AxiosRequestConfig) => {
-  return http.get<Array<IBookData>>("/books",options);
+const getAll = (id: string,options: AxiosRequestConfig) => {
+  return http.get<Array<IBookData>>(`/books?id=${id}`,options);
+};
+const getAllForUser = (userId:String,options: AxiosRequestConfig) => {
+  return http.get<Array<IBookData>>(`/users/${userId}/books`,options);
 };
 
-const get = (id: any) => {
+const get = (id: number) => {
   return http.get<IBookData>(`/books/${id}`);
 };
 
-const create = (userId:String, image: FormData,options: AxiosRequestConfig) => {
+const create = (userId:String, image: any,options: AxiosRequestConfig) => {
   return http.post<IBookData>(`/users/${userId}/books`,image,options);
 };
 
-const update = (userId:String, bookId: number, image: FormData,options: AxiosRequestConfig) => {
-  return http.put<IBookData>(`/users/${userId}/books/${bookId}`, image,options);
+const update = (userId:String, image: FormData,options: AxiosRequestConfig) => {
+  return http.put<IBookData>(`/users/${userId}/books`,image, options);
 };
 
 const remove = (userId: String, bookId: number,options: AxiosRequestConfig) => {
   return http.delete<boolean>(`/users/${userId}/books/${bookId}`,options);
 };
 
-// const removeAll = () => {
-//   return http.delete<any>(`/api/book`);
-// };
-// const findByTitle = (title: string) => {
-//   return http.get<Array<IBookData>>(`/api/book?title=${title}`);
-// };
+const findByTitleOrAuthor = (str: string,id: string) => {
+  return http.get<Array<IBookData>>(`/books/search?str=${str}&id=${id}`);
+};
+
+const findByCategory = (id: string) => {
+  return http.get<Array<IBookData>>(`/books/category?id=${id}`);
+};
 
 const BookService = {
   getAll,
@@ -36,6 +40,9 @@ const BookService = {
   create,
   update,
   remove,
+  findByTitleOrAuthor,
+  findByCategory,
+  getAllForUser,
   };
 
 export default BookService;

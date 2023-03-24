@@ -1,5 +1,5 @@
 export default interface IAddressData {
-    id?: number | null,
+    id?: number,
     country: string,
     state: string,
     city: string,

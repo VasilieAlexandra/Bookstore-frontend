@@ -36,8 +36,14 @@ export const EditBook = () => {
     const { user } = useAuth();
     const { getAllExclude } = CatgeoryService;
     const { get, update } = BookService;
-    let { id } = useParams();
+    const { id } = useParams();
 
+    const isDisabled = () => {
+        if (bookRequest.categories.length===0 || image.preview==='')
+            return true;
+        return false;
+    }
+    
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files!.length) {
@@ -71,21 +77,18 @@ export const EditBook = () => {
                 },                
                   params: {"exclude": ids},
                   paramsSerializer: {
-                    indexes: null // by default: false
+                  indexes: null // by default: false
                   }
             };
             const response = await getAllExclude(book.id,options);
-            setCategoryList(response.data);
-            
-            
-            
+            setCategoryList(response.data);  
         }
 
         function getBook() {
-            get(id).then((response) =>{
+            get(parseInt(id!)).then((response) =>{
                 setBookRequest(response.data);
                 getCategories(response.data);
-                setImage({...image,preview: `data:image/jpeg;base64,${response.data.image}`})
+                setImage({preview: `data:image/jpeg;base64,${response.data.image}`, raw: response.data.image});
             }
             );
             
@@ -110,7 +113,7 @@ export const EditBook = () => {
         };
 
         try{
-            const response = await update(user!.uid, bookRequest.id!, formData, options);
+            const response = await update(user!.uid, formData, options);
             console.log(response); 
 
         }catch{
@@ -188,10 +191,9 @@ export const EditBook = () => {
                         label="Price" variant="outlined"
                              onChange={handleOnChange} required
                             inputProps={{
-                                inputMode: 'numeric', 
-                                pattern: "[0-9]+([\.,][0-9]+)?", 
-                                step:'0.01',
-                                min: 1,
+                                inputMode: 'numeric',  
+                                step:'1',
+                                min: '1',
                              }} 
                             InputProps={{
                                 endAdornment: <InputAdornment position="start"  >Lei</InputAdornment>}} />
@@ -201,7 +203,7 @@ export const EditBook = () => {
                             onChange={handleOnChange} 
                         inputProps={{
                                 inputMode: 'numeric',
-                                min: 1,
+                                min: '1',
                                 step:'1',
                              }} 
                         />
@@ -217,9 +219,8 @@ export const EditBook = () => {
                                 ))}
                         </Grid>
                         <div className="mt-4">
-                            <Button variant="contained" size="small" type="submit" >Save</Button>
+                            <Button variant="contained" size="small" type="submit" disabled={isDisabled()} >Save</Button>
                         </div>
-                        {/* {error && <Alert className="m-10" variant="danger">{error}</Alert>} */}
                     </div>
                     </form>
 

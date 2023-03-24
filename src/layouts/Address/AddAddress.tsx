@@ -50,7 +50,6 @@ export const AddAddress = ({ increment }: Props) => {
         } catch {
             setError("Failed to add address");
         }
-        e.currentTarget.reset();
 
     }
 
