@@ -76,7 +76,7 @@ export const CartProvider = ({ children }: CartProviderProps): JSX.Element => {
     const updateCart = (orderLine: IOrderLineData, q: number) => {
         console.log("Updated!")
         const ind = getIndex(orderLine);
-        if (cart[ind].book!.quantity-q>= 0) {
+        if (cart[ind].book!.quantity - q >= 0) {
 
             setNumBooks(numBooks + q - cart[ind].quantity);
             cart[ind].quantity = q;

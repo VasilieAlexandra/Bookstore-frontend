@@ -15,21 +15,21 @@ export const FilteredBooks = () => {
     const { findByTitleOrAuthor } = BookService;
     const { user } = useAuth();
     const [filteredBooks, setFilteredBooks] = useState<Array<IBookData>>([]);
-    
 
-    useEffect(()=>{
+
+    useEffect(() => {
         async function getBooks() {
-            var id = user!==null? user!.uid : '';
-            const response = await findByTitleOrAuthor(sequence!,'');
+            var id = user !== null ? user!.uid : '';
+            const response = await findByTitleOrAuthor(sequence!, '');
             setFilteredBooks(response.data)
             console.log(sequence);
         }
         getBooks();
-    },[sequence]);
-    
-    return(
+    }, [sequence]);
+
+    return (
         <div className=" d-flex p-3 m-auto ">
-            <BookList books={filteredBooks}/>
+            <BookList books={filteredBooks} />
         </div>
     );
 };

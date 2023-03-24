@@ -19,7 +19,7 @@ export const ShopBooks = ({ books }: Props) => {
                         gridAutoFlow: "column",
                         gridTemplateColumns: "repeat(auto-fill,minmax(250px,1fr)) !important",
                         gridAutoColumns: "minmax(250px, 1fr)",
-                        '&::-webkit-scrollbar': { width: "10px",height:"4px", background: "#888;"}
+                        '&::-webkit-scrollbar': { width: "10px", height: "4px", background: "#888;" }
                     }} cols={5} gap={20} rowHeight={330}>
 
                         {books && books.map((book) => (

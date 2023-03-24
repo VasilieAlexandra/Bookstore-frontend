@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Alert, Container } from "react-bootstrap";
 import { useAuth } from "../../provider/AuthProvider";
-import  AddressService  from "../../services/ShippingAddressService";
+import AddressService from "../../services/ShippingAddressService";
 import IAddressData from "../../types/ShippingAddress";
 import { AxiosRequestConfig } from "axios";
 import Button from "@mui/material/Button";
@@ -11,11 +11,11 @@ import EditIcon from '@mui/icons-material/Edit';
 
 
 interface Props {
-    increment:  () => void
+    increment: () => void
     address: IAddressData
 }
 
-export const EditAddress = ({increment, address}: Props) => {
+export const EditAddress = ({ increment, address }: Props) => {
 
 
     const { user } = useAuth();
@@ -52,7 +52,7 @@ export const EditAddress = ({increment, address}: Props) => {
         } catch {
             setError("Failed to update address");
         }
-        
+
     }
 
     const [open, setOpen] = useState(false);
@@ -114,7 +114,7 @@ export const EditAddress = ({increment, address}: Props) => {
                         </div>
                         {error && <Alert className="m-10" variant="danger">{error}</Alert>}
                     </form>
-                    
+
                 </Container>
             </Modal>
 

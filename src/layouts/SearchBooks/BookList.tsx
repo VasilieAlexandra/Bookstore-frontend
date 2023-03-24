@@ -17,7 +17,7 @@ export const BookList = ({ books }: Props) => {
                 <Empty className="mt-10" /> :
                 <div >
                     <ImageList className="mr-auto" sx={{
-                        '&::-webkit-scrollbar': { width: "4px",height:"1px", background: "#888;"}
+                        '&::-webkit-scrollbar': { width: "4px", height: "1px", background: "#888;" }
                     }} cols={4} gap={20} rowHeight={330}>
 
                         {books && books.map((book) => (

@@ -85,7 +85,7 @@ export const BookListItem = ({ book, increment }: Props) => {
                 title={book.name}
                 subtitle={<span >Author: {book.author}</span>}
                 position="below"
-                sx={{height:"50px"}}
+                sx={{ height: "50px" }}
                 actionIcon={
                     <>
                         <IconButton
@@ -123,7 +123,7 @@ export const BookListItem = ({ book, increment }: Props) => {
                             </MenuItem>
                             <Divider sx={{ my: 0.5 }} />
                             <MenuItem value={book.id} >
-                            <BookInfo id={selectedBookIdRef.current!}/>
+                                <BookInfo id={selectedBookIdRef.current!} />
                             </MenuItem>
 
                         </Menu>

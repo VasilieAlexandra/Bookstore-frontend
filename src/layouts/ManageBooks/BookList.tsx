@@ -17,15 +17,15 @@ export const BookList = ({ books, increment }: Props) => {
     return (
         <>
             {books.length === 0 ?
-                <Empty className="m-auto"/> :
+                <Empty className="m-auto" /> :
                 <div className="d-flex me-auto">
                     <ImageList cols={4} gap={20} rowHeight={200}>
 
                         {books && books.map((book) => (
                             <ImageListItem key={book.id} sx={{ width: '200px', height: "200px" }}>
-                                <BookListItem book={book} increment={increment}/>
+                                <BookListItem book={book} increment={increment} />
                             </ImageListItem>
-                            
+
                         ))}
                     </ImageList>
                 </div>

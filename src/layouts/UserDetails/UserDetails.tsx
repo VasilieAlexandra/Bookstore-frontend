@@ -19,19 +19,19 @@ interface UserData {
 export const UserDetails = () => {
 
   const { user, updateUser } = useAuth();
-  const {photoUrl} = useAuth();
-  const [userData, setUserData] = useState<UserData>({ displayName: user?.displayName, photoUrl:  user?.photoURL! });
+  const { photoUrl } = useAuth();
+  const [userData, setUserData] = useState<UserData>({ displayName: user?.displayName, photoUrl: user?.photoURL! });
   const [photo, setPhoto] = useState<File>("" as unknown as File);
 
-  
+
   useEffect(() => {
     async function getData() {
       if (user?.photoURL) {
-        setUserData({...userData,photoUrl: user.photoURL});
+        setUserData({ ...userData, photoUrl: user.photoURL });
       }
     }
     getData();
-}, [user]);
+  }, [user]);
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,14 +53,14 @@ export const UserDetails = () => {
     });
   };
 
-    const handleUpload = async (e:React.MouseEvent<HTMLElement>) => {
-     
-      await updateUser(user!,{displayName:userData.displayName, file: photo});
+  const handleUpload = async (e: React.MouseEvent<HTMLElement>) => {
 
-    };
+    await updateUser(user!, { displayName: userData.displayName, file: photo });
+
+  };
 
   return (
-    
+
     <div className="d-flex row justify-content-between mt-5">
       <label className="p-3" htmlFor="upload-button">
         <Badge
@@ -70,11 +70,11 @@ export const UserDetails = () => {
             <AddCircleIcon />
           }
         >
-           <Avatar
+          <Avatar
             src={userData.photoUrl}
             sx={{ width: 100, height: 100 }} />
         </Badge>
-      </label> 
+      </label>
 
       <input
         type="file"
@@ -82,11 +82,11 @@ export const UserDetails = () => {
         id="upload-button"
         style={{ display: "none" }}
         onChange={handleChange}
-        
+
       />
       <TextField className="p-3 m-auto" name="displayName" id="outlined-basic" defaultValue={userData.displayName}
         label="username" variant="outlined" onChange={handleTextChange} />
-      <TextField className="p-3"name="email" id="outlined-basic" defaultValue={user?.email}
+      <TextField className="p-3" name="email" id="outlined-basic" defaultValue={user?.email}
         label="email" variant="standard" disabled />
       <div className="d-flex justify-content-end">
         <Button className="" size="small" onClick={handleUpload}>Save</Button>

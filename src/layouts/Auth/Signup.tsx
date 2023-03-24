@@ -9,23 +9,23 @@ export const Signup = () => {
     const confirmPasswordRef = useRef<HTMLInputElement>(null);
 
     const { signUp } = useAuth();
-  
+
     const [error, setError] = useState("");
     const history = useNavigate();
 
     const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if( passwordRef.current!.value=== confirmPasswordRef.current!.value)
-        try {
-          setError("");
-          await signUp(emailRef.current!.value, passwordRef.current!.value);
-          history("/");
-        } catch {
-          setError("Failed to sign up");
-        }
+        if (passwordRef.current!.value === confirmPasswordRef.current!.value)
+            try {
+                setError("");
+                await signUp(emailRef.current!.value, passwordRef.current!.value);
+                history("/");
+            } catch {
+                setError("Failed to sign up");
+            }
         else setError("Confirmed password does not match");
-      }
+    }
 
     return (
 

@@ -55,9 +55,9 @@ export const Orders = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {orders.map((row) => (                                
+                                {orders.map((row) => (
                                     <OrderTableRow key={row.id} row={row} />
-                                  
+
                                 ))}
                             </TableBody>
                         </Table>

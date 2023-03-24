@@ -7,7 +7,7 @@ const getAll = () => {
     return http.get<Array<ICategoryData>>("/categories");
 }
 const getAllExclude = (id: number, options: AxiosRequestConfig) => {
-  return http.get<Array<ICategoryData>>(`/categories/${id}/exclude`,options);
+    return http.get<Array<ICategoryData>>(`/categories/${id}/exclude`, options);
 }
 
 const get = (id: number) => {

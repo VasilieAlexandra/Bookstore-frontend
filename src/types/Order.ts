@@ -6,6 +6,6 @@ export default interface IOrderData {
     idAddress: number | null,
     date: string,
     userid?: string | null,
-    shippingAddress?: IAddressData|null,
+    shippingAddress?: IAddressData | null,
     orderLines?: Array<IOrderLineData> | null,
 }

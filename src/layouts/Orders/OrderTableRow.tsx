@@ -24,31 +24,31 @@ interface Props {
 
 export const OrderTableRow = ({ row }: Props) => {
 
-    
+
     const { user, token, isAuthenticated } = useAuth();
     const [open, setOpen] = useState<boolean>(false);
 
     const { getOrderPrice } = OrderService;
-    const [price,setPrice] = useState<string>("");
+    const [price, setPrice] = useState<string>("");
     const options: AxiosRequestConfig = {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         const getPrice = async () => {
-            const response = await getOrderPrice(row.id!,user!.uid,options);
+            const response = await getOrderPrice(row.id!, user!.uid, options);
             setPrice(response.data.toString());
-        } 
+        }
         getPrice();
-    },[]);
+    }, []);
 
-    
+
 
     return (
         <React.Fragment>
-            <TableRow  sx={{ '& > *': { borderBottom: 'unset' } }}>
+            <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                 <TableCell>
                     <IconButton
                         aria-label="expand row"
@@ -65,7 +65,7 @@ export const OrderTableRow = ({ row }: Props) => {
 
             <TableRow >
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                    <Collapse  in={open} timeout="auto" unmountOnExit>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
                             <Typography variant="h6" gutterBottom component="div">
                                 Order Items
@@ -79,7 +79,7 @@ export const OrderTableRow = ({ row }: Props) => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {row.orderLines?.map((item,index) => (
+                                    {row.orderLines?.map((item, index) => (
                                         <TableRow key={index}>
                                             <TableCell component="th" scope="row">{item.book?.name}</TableCell>
                                             <TableCell align="left">{item.quantity}</TableCell>
@@ -95,7 +95,7 @@ export const OrderTableRow = ({ row }: Props) => {
                         </Box>
                     </Collapse>
                 </TableCell>
-             </TableRow> 
+            </TableRow>
 
         </React.Fragment>
     );

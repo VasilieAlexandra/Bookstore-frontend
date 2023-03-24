@@ -18,11 +18,11 @@ interface Props {
 
 
 export const BookCard = ({ book }: Props) => {
-    const {addToCart} = useCart();
-    const add = (book: IBookData) =>{
-        addToCart({idBook: book.id,quantity:1,book:book} as IOrderLineData)
+    const { addToCart } = useCart();
+    const add = (book: IBookData) => {
+        addToCart({ idBook: book.id, quantity: 1, book: book } as IOrderLineData)
     }
-    
+
 
     return (
         <Card sx={{ maxWidth: 250 }}>
@@ -31,7 +31,7 @@ export const BookCard = ({ book }: Props) => {
                 subheader={book.author}
                 sx={{ height: 100 }}
                 action={
-                    <IconButton aria-label="add to cart" onClick={()=>add(book)}>
+                    <IconButton aria-label="add to cart" onClick={() => add(book)}>
                         <AddShoppingCartIcon color="secondary" />
                     </IconButton>
                 } />
@@ -46,15 +46,15 @@ export const BookCard = ({ book }: Props) => {
             <Divider></Divider>
             <CardContent>
                 <div className="d-flex justify-content-between col">
-                <Typography variant="body2" color="text.secondary">
-                    {`${book.price} Lei `}
-                </Typography>
-                <BookInfo id={book.id}/>
+                    <Typography variant="body2" color="text.secondary">
+                        {`${book.price} Lei `}
+                    </Typography>
+                    <BookInfo id={book.id} />
                 </div>
             </CardContent>
             <CardActions disableSpacing>
-            
-      </CardActions>
+
+            </CardActions>
         </Card>
 
     );

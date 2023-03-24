@@ -12,8 +12,8 @@ import { ShopBooks } from './ShopBooks';
 export const ExploreBooks = () => {
     const [books, setBooks] = useState<Array<IBookData>>([]);
     const { getAll } = BookService
-    const { user,isAuthenticated } = useAuth();
-    var id = user!==null? user!.uid : '';
+    const { user, isAuthenticated } = useAuth();
+    var id = user !== null ? user!.uid : '';
 
     const options: AxiosRequestConfig = {
         headers: {
@@ -24,8 +24,8 @@ export const ExploreBooks = () => {
     useEffect(() => {
 
         async function getCategories() {
-     
-            const response = await getAll('',options);
+
+            const response = await getAll('', options);
             setBooks(response.data);
             console.log(isAuthenticated);
         }
@@ -43,7 +43,7 @@ export const ExploreBooks = () => {
                 </div>
             </div>
             <div className=" mt-1 mb-auto d-flex justify-content-center aligne-items-center row ">
-            <ShopBooks books={books}/>
+                <ShopBooks books={books} />
             </div>
         </div>
     );

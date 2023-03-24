@@ -8,23 +8,23 @@ export const ForgotPassword = () => {
     const confirmPasswordRef = useRef<HTMLInputElement>(null);
 
     const { updateUserPassword, user } = useAuth();
-  
+
     const [error, setError] = useState("");
     const history = useNavigate();
 
     const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if( passwordRef.current!.value=== confirmPasswordRef.current!.value)
-        try {
-          setError("");
-          await updateUserPassword(passwordRef.current!.value);
-          history("/");
-        } catch {
-          setError("Failed to change password");
-        }
+        if (passwordRef.current!.value === confirmPasswordRef.current!.value)
+            try {
+                setError("");
+                await updateUserPassword(passwordRef.current!.value);
+                history("/");
+            } catch {
+                setError("Failed to change password");
+            }
         else setError("Confirmed password does not match");
-      }
+    }
     return (
         <>
             <Container
@@ -36,20 +36,20 @@ export const ForgotPassword = () => {
                         <Card.Body>
                             <h2 className="text-center mb-4">Password Reset</h2>
                             {error && <Alert variant="danger">{error}</Alert>}
-                        <Form onSubmit={handleSubmit}>
+                            <Form onSubmit={handleSubmit}>
 
-                            <Form.Group id="password">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" ref={passwordRef} placeholder='New password' />
-                            </Form.Group>
-                            <Form.Group id="password-confirm">
-                                <Form.Label>Confirm password</Form.Label>
-                                <Form.Control type="password" ref={confirmPasswordRef} placeholder='Confirm password' />
-                            </Form.Group>
-                            <Button className="button-style" type="submit">
-                               Reset password
-                            </Button>
-                        </Form>
+                                <Form.Group id="password">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="password" ref={passwordRef} placeholder='New password' />
+                                </Form.Group>
+                                <Form.Group id="password-confirm">
+                                    <Form.Label>Confirm password</Form.Label>
+                                    <Form.Control type="password" ref={confirmPasswordRef} placeholder='Confirm password' />
+                                </Form.Group>
+                                <Button className="button-style" type="submit">
+                                    Reset password
+                                </Button>
+                            </Form>
                         </Card.Body>
                     </Card>
                 </div>

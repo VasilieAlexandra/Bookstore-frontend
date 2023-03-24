@@ -7,12 +7,15 @@ interface Props {
 }
 
 export const RequireAuth = ({ children }: Props) => {
-    const {isAuthenticated,checkingStatus } = useAuth();
+    const { isAuthenticated, checkingStatus } = useAuth();
     const location = useLocation();
-        
-    return( <>{
-        checkingStatus? <div className="d-flex justify-content-center row aligne-items-center"> <Spinner/></div> : 
-            isAuthenticated ? children : <Navigate to="/login" replace state={{ path: location.pathname }}/>
-    }</>
-  );
+
+    return (
+        <>
+            {
+                checkingStatus ? <div className="d-flex justify-content-center row aligne-items-center"> <Spinner /></div> :
+                    isAuthenticated ? children : <Navigate to="/login" replace state={{ path: location.pathname }} />
+            }
+        </>
+    );
 };

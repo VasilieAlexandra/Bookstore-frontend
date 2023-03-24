@@ -14,18 +14,18 @@ export const CategoryBooks = () => {
     const { getBooksByCategory } = CatgeoryService;
     const [filteredBooks, setFilteredBooks] = useState<Array<IBookData>>([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         async function getBooks() {
             const response = await getBooksByCategory(parseInt(id!));
             setFilteredBooks(response.data)
             console.log(id);
         }
         getBooks();
-    },[]);
-    
-    return(
+    }, []);
+
+    return (
         <div className=" d-flex p-3 m-auto ">
-            <BookList books={filteredBooks}/>
+            <BookList books={filteredBooks} />
         </div>
     );
 };

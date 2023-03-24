@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import UserService from "../../services/UserService";
 import { AxiosRequestConfig } from "axios";
 import { useAuth } from "../../provider/AuthProvider";
 import TableContainer from "@mui/material/TableContainer";
@@ -41,7 +40,7 @@ export const Cart = () => {
         getAll(user!.uid, options).then(response => setAddresses(response.data));
     }
 
-      getData();
+    getData();
   }, []);
 
 
@@ -116,7 +115,7 @@ export const Cart = () => {
         </Table>
       </TableContainer>
       {!isAuthenticated ?
-        <Alert className="mt-10" variant="danger">You need to create an account to place an order!</Alert> 
+        <Alert className="mt-10" variant="danger">You need to create an account to place an order!</Alert>
         :
         <RadioGroup
           aria-labelledby="radio-buttons-group"

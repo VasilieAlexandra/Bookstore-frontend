@@ -54,7 +54,7 @@ const App = () => {
             <EditBook />
           </RequireAuth>
         )} />
-        
+
 
         <Route path="/books/search/:sequence" element={<FilteredBooks />} />
         <Route path="/books/search/" element={<FilteredBooks />} />
@@ -67,7 +67,7 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
 
-        {/* <Footer /> */}
+      {/* <Footer /> */}
     </>
   );
 }

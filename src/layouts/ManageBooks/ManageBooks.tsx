@@ -22,7 +22,7 @@ export const ManageBooks = () => {
     const [books, setBooks] = useState<Array<IBookData>>([]);
     const { getAllForUser } = BookService
     const history = useNavigate();
-    
+
     const [count, setCount] = useState(0);
     const increment = () => {
         setCount(count + 1)
@@ -47,14 +47,14 @@ export const ManageBooks = () => {
         <>
             <AccountSidebar>
                 <div className="d-flex justify-content-center aligne-item-center col mt-5">
-                    <Tooltip title="Add book"  placement="top-end" >
+                    <Tooltip title="Add book" placement="top-end" >
                         <>
                             <IconButton className="h-25" onClick={() => { history("/account/manageBooks/add") }}>
                                 <AddCircleIcon fontSize="large" />
                             </IconButton>
                         </>
                     </Tooltip>
-                   <BookList books={books} increment={increment}></BookList>
+                    <BookList books={books} increment={increment}></BookList>
 
                 </div>
             </AccountSidebar>

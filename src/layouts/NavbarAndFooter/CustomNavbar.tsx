@@ -23,15 +23,15 @@ export const CustomNavbar = () => {
     const history = useNavigate();
     const [categoryList, setCategoryList] = useState<Array<ICategoryData>>([]);
     const { getAll } = CatgeoryService
-    const { numBooks } =  useCart();
+    const { numBooks } = useCart();
 
-    useEffect(()=>{
-        async function getCategories(){
+    useEffect(() => {
+        async function getCategories() {
             const response = await getAll();
             setCategoryList(response.data);
         }
         getCategories();
-    },[]);
+    }, []);
 
     async function handleLogout(e: React.MouseEvent<HTMLElement>) {
         try {
@@ -52,7 +52,7 @@ export const CustomNavbar = () => {
                 <ul className='navbar-nav '>
                     <div className="dropdown">
                         <a className="btn btn-secondary dropdown-toggle nav-link bg-transparent" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                            aria-expanded="false">
                             Categories
                         </a>
                         <ul className="dropdown-menu">

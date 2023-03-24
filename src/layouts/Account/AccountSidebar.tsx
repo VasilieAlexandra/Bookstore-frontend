@@ -15,28 +15,28 @@ interface Props {
 }
 export const AccountSidebar = ({ children }: Props) => {
 
-    const { collapseSidebar } = useProSidebar();
-    return( 
-        <div id="sidebar" className="d-flex me-auto ms-auto" >
-            <Sidebar style={{ display: "flex",height: "91vh"}}>
-                
+  const { collapseSidebar } = useProSidebar();
+  return (
+    <div id="sidebar" className="d-flex me-auto ms-auto" >
+      <Sidebar style={{ display: "flex", height: "91vh" }}>
+
         <Menu>
-        <MenuItem
+          <MenuItem
             icon={<MenuOutlinedIcon />}
             onClick={() => {
               collapseSidebar();
             }}
-            >
+          >
           </MenuItem>
-          <MenuItem icon={<PeopleOutlinedIcon />}  component={<Link to="/account"/>} >Edit Account</MenuItem>
-          <MenuItem icon={<BookIcon />} component={<Link to="/account/manageBooks"/>} >Manage Books</MenuItem>
-          <MenuItem icon={<OrdersIcon />} component={<Link to="/account/orders"/>}>My Orders</MenuItem>
+          <MenuItem icon={<PeopleOutlinedIcon />} component={<Link to="/account" />} >Edit Account</MenuItem>
+          <MenuItem icon={<BookIcon />} component={<Link to="/account/manageBooks" />} >Manage Books</MenuItem>
+          <MenuItem icon={<OrdersIcon />} component={<Link to="/account/orders" />}>My Orders</MenuItem>
 
         </Menu>
- 
-      </Sidebar> 
-      <main className="d-flex me-auto ms-auto mb-auto justify-content-center aligne-items-center flex-grow-1 row">{children}</main>
-        </div>
 
-    );
+      </Sidebar>
+      <main className="d-flex me-auto ms-auto mb-auto justify-content-center aligne-items-center flex-grow-1 row">{children}</main>
+    </div>
+
+  );
 }
