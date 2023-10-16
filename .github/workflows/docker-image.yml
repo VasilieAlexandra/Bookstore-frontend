@@ -69,7 +69,7 @@ jobs:
       #     tags:  ${{secrets.DOCKER_USER}}/bookstore-frontend:latest
         
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag alexandravasilie/bookstore-backend:latest
+        run: docker build --tag alexandravasilie/bookstore-backend:latest
       
       - name: Docker Push
         run: docker push ${{secrets.DOCKER_USER}}/bookstore-frontend:latest
