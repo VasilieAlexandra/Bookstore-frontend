@@ -37,6 +37,8 @@ jobs:
         run: |
           npm run build
           npm test
+        env:
+          CI: "false"
           
   push_to_Docker_Hub:
 
