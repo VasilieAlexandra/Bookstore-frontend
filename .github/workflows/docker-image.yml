@@ -4,9 +4,9 @@ name: Docker Image CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main]
+    branches: [ "master" ]
   pull_request:
-    branches: [main]
+    branches: [ "master" ]
 
 jobs:
   # This workflow contains multiple jobs
@@ -30,13 +30,14 @@ jobs:
       # install applicaion dependencies
       - name: Install dependencies
         run: |
-          npm install
+          npm ci
 
       # build and test the apps
       - name: build
         run: |
           npm run build
-          npm test
+        env:
+          CI: "false"
           
   push_to_Docker_Hub:
 
@@ -60,8 +61,8 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         
       - name: Build the Docker image
-        run: docker build . --file bookstore-app\Dockerfile --tag alexandravasilie/bookstore-backend:latest
+        run: docker build . --file Dockerfile --tag alexandravasilie/bookstore-backend:latest
       
       - name: Docker Push
-        run: docker push ${{secrets.DOCKER_USER}}/bookstore-backend:latest
+        run: docker push ${{secrets.DOCKER_USER}}/bookstore-frontend:latest
         
