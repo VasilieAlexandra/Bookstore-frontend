@@ -60,8 +60,8 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag alexandravasilie/bookstore-backend:latest
+        run: docker build . --file Dockerfile --tag alexandravasilie/bookstore-frontend:latest
       
       - name: Docker Push
-        run: docker push ${{secrets.DOCKER_USER}}/bookstore-backend:latest
+        run: docker push ${{secrets.DOCKER_USER}}/bookstore-frontend:latest
         
