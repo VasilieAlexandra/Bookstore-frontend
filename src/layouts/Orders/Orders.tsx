@@ -12,6 +12,7 @@ import { useAuth } from "../../provider/AuthProvider";
 import { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 import { OrderTableRow } from "./OrderTableRow";
+import React  from 'react';
 
 export const Orders = () => {
 

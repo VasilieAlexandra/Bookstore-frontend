@@ -1,6 +1,7 @@
 import Spinner from "react-bootstrap/esm/Spinner";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../provider/AuthProvider";
+import React  from 'react';
 
 interface Props {
     children: JSX.Element | null

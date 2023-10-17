@@ -10,12 +10,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useAuth } from "../../provider/AuthProvider";
 import IAddressData from "../../types/ShippingAddress";
 import AddressService from "../../services/ShippingAddressService";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AxiosRequestConfig } from "axios";
 import { EditAddress } from "./EditAddress";
 import Tooltip from "@mui/material/Tooltip";
 import { AddAddress } from "./AddAddress";
-
+import React  from 'react';
 
 interface Props {
     addresses: Array<IAddressData>

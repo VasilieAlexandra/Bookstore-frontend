@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import CatgeoryService from "../../services/CategoryService";
 import IBookData from "../../types/Book";
 import { BookList } from "./BookList";
+import React  from 'react';
 
 export const CategoryBooks = () => {
     const { id } = useParams();

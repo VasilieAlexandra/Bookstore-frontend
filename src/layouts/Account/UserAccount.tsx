@@ -7,6 +7,7 @@ import IAddressData from "../../types/ShippingAddress";
 import { AxiosRequestConfig } from "axios";
 import { AddressTable } from "../Address/AddressTable";
 import { UserDetails } from "../UserDetails/UserDetails";
+import React  from 'react';
 
 export const UserAccount = () => {
     const { user } = useAuth();

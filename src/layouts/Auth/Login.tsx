@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Form, Button, Card, Alert, Container } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../provider/AuthProvider";
+import React  from 'react';
 
 export const Login = () => {
   const emailRef = useRef<HTMLInputElement>(null);

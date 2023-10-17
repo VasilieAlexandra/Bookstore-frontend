@@ -17,12 +17,12 @@ import { AxiosRequestConfig } from "axios";
 import { useAuth } from "../../provider/AuthProvider";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/esm/Spinner";
+import React  from 'react';
+// interface Props {
+//     book: IBookData,
+//     increment: () => void
 
-interface Props {
-    book: IBookData,
-    increment: () => void
-
-}
+// }
 
 
 export const EditBook = () => {

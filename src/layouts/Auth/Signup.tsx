@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 import { useRef, useState } from "react";
 import { useAuth } from "../../provider/AuthProvider";
+import React  from 'react';
+
 export const Signup = () => {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);

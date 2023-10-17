@@ -4,6 +4,7 @@ import { AxiosRequestConfig } from 'axios';
 import BookService from '../../services/BookService';
 import { useEffect, useState } from 'react';
 import { ShopBooks } from './ShopBooks';
+import React  from 'react';
 
 export const ExploreBooks = () => {
     const [books, setBooks] = useState<Array<IBookData>>([]);

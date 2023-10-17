@@ -10,7 +10,7 @@ import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { blueGrey } from '@mui/material/colors';
 import { useCart } from "../../provider/CartProvider";
-
+import React  from 'react';
 
 
 export const CustomNavbar = () => {

@@ -2,6 +2,7 @@ import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { useRef, useState } from "react";
 import { useAuth } from "../../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import React  from 'react';
 
 export const ForgotPassword = () => {
     const passwordRef = useRef<HTMLInputElement>(null);
