@@ -1,10 +1,6 @@
-import HorizontalScroll from 'react-horizontal-scrolling'
-
 import IBookData from '../../types/Book';
-import { BookListItem } from '../ManageBooks/BookListItem';
 import { useAuth } from '../../provider/AuthProvider';
 import { AxiosRequestConfig } from 'axios';
-import { useNavigate } from 'react-router-dom';
 import BookService from '../../services/BookService';
 import { useEffect, useState } from 'react';
 import { ShopBooks } from './ShopBooks';

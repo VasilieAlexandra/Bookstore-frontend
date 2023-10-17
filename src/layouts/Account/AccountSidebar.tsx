@@ -1,14 +1,9 @@
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import BookIcon from '@mui/icons-material/Book';
 import OrdersIcon from '@mui/icons-material/LocalMall';
-import { UserAccount } from "./UserAccount";
-import { Link, Route, Routes } from "react-router-dom";
-import { ExploreBooks } from "../HomePage/ExploreBooks";
-import { ManageBooks } from "../ManageBooks/ManageBooks";
-import { Orders } from "../Orders/Orders";
+import { Link } from "react-router-dom";
 
 interface Props {
   children: JSX.Element | null

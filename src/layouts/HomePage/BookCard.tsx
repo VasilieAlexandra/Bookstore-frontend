@@ -3,7 +3,6 @@ import CardActions from "@mui/material/CardActions";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import IBookData from "../../types/Book";
 import { CardContent, Divider, Typography } from "@mui/material";

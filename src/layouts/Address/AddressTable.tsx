@@ -6,16 +6,13 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Button } from "react-bootstrap";
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import { useAuth } from "../../provider/AuthProvider";
 import IAddressData from "../../types/ShippingAddress";
 import AddressService from "../../services/ShippingAddressService";
 import { useState, useEffect } from "react";
 import { AxiosRequestConfig } from "axios";
 import { EditAddress } from "./EditAddress";
-import Badge from '@mui/material/Badge';
 import Tooltip from "@mui/material/Tooltip";
 import { AddAddress } from "./AddAddress";
 

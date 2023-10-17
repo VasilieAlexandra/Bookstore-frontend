@@ -14,7 +14,6 @@ import { RequireAuth } from './layouts/Auth/RequireAuth';
 import { AddBook } from './layouts/ManageBooks/AddBook';
 import { EditBook } from './layouts/ManageBooks/EditBook';
 import { FilteredBooks } from './layouts/SearchBooks/FilteredBooks';
-import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { CategoryBooks } from './layouts/SearchBooks/CategoryBooks';
 import { FilterMenu } from './layouts/SearchBooks/FiltersMenu';
 

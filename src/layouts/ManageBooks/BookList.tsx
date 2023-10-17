@@ -1,6 +1,5 @@
 import { ImageListItem } from "@mui/material";
 import ImageList from "@mui/material/ImageList";
-import Spinner from 'react-bootstrap/esm/Spinner';
 import IBookData from '../../types/Book';
 import { BookListItem } from './BookListItem';
 import { Empty } from 'antd';

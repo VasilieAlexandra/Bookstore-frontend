@@ -1,18 +1,12 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
-import { Navbar, Nav, Form, Row, Col, FormControl, Button, Container } from "react-bootstrap";
+import { Link} from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../provider/AuthProvider";
 import { AccountSidebar } from "./AccountSidebar";
 import AddressService from "../../services/ShippingAddressService";
 import IAddressData from "../../types/ShippingAddress";
 import { AxiosRequestConfig } from "axios";
-import { AddAddress } from "../Address/AddAddress";
 import { AddressTable } from "../Address/AddressTable";
-import TextField from "@mui/material/TextField";
-import { User } from "firebase/auth";
 import { UserDetails } from "../UserDetails/UserDetails";
-import Avatar from "@mui/material/Avatar";
-import Divider from "@mui/material/Divider";
 
 export const UserAccount = () => {
     const { user } = useAuth();

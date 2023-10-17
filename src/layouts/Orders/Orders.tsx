@@ -5,7 +5,6 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Container } from "react-bootstrap";
 import { AccountSidebar } from "../Account/AccountSidebar";
 import IOrderData from "../../types/Order";
 import OrderService from "../../services/OrderService";
@@ -13,10 +12,6 @@ import { useAuth } from "../../provider/AuthProvider";
 import { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 import { OrderTableRow } from "./OrderTableRow";
-import IconButton from "@mui/material/IconButton";
-
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 export const Orders = () => {
 

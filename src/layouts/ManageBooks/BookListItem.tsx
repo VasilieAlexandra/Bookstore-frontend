@@ -1,21 +1,12 @@
-import InfoIcon from '@mui/icons-material/Info';
-import Chip from '@mui/material/Chip';
-import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import Spinner from 'react-bootstrap/esm/Spinner';
 import IBookData from '../../types/Book';
-
-
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useRef, useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BookService from '../../services/BookService';
 import { AxiosRequestConfig } from 'axios';

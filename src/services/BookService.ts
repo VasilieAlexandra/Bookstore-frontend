@@ -1,6 +1,5 @@
 import http from "../http-common";
 import IBookData from "../types/Book";
-import auth from "../firebaseSetup";
 import { AxiosRequestConfig } from "axios";
 
 const getAll = (id: string, options: AxiosRequestConfig) => {

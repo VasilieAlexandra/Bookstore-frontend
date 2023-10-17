@@ -1,12 +1,8 @@
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import React, { createRef, useEffect, useState } from "react";
-import ImageUploading, { ImageListType } from "react-images-uploading";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../provider/AuthProvider";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import TextField from "@mui/material/TextField";
-
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";

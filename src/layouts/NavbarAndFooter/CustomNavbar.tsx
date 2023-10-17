@@ -1,14 +1,11 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
-import { Navbar, Nav, Form, Row, Col, FormControl, Button } from "react-bootstrap";
-import myLogo from '../../Images/PublicImages/logo.jpg';
-import cart from '../../Images/PublicImages/trolley-cart.png';
+import { useEffect, useState } from "react";
+import { Navbar, Nav } from "react-bootstrap";
 import account from '../../Images/PublicImages/user.png';
 import { useAuth } from "../../provider/AuthProvider";
 import CatgeoryService from "../../services/CategoryService";
 import ICategoryData from "../../types/Category";
 import { SearchBar } from "./SearchBar";
-import IconButton from "@mui/material/IconButton";
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { blueGrey } from '@mui/material/colors';

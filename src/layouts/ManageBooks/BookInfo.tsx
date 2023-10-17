@@ -2,7 +2,6 @@ import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import Modal from "@mui/material/Modal/Modal";
 import { useEffect, useState } from "react";
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import IBookData from "../../types/Book";
 import InputAdornment from "@mui/material/InputAdornment";
 import Grid from "@mui/material/Grid";
