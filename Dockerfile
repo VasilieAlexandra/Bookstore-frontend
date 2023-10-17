@@ -4,7 +4,7 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY package.json /app
-COPY .env /app
+COPY .template.env /app
 
 RUN node -v
 RUN npm install
