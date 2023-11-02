@@ -34,6 +34,7 @@ build:
     name: gcr.io/kaniko-project/executor:v1.14.0-debug
     entrypoint: [""]
   before_script:
+    - echo "$ENV_VAR" > "$CI_PROJECT_DIR/.env"
     - mkdir -p /kaniko/.docker
     - |
       cat <<EOF > /kaniko/.docker/config.json
